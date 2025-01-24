@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>Library User Form</h1>
+
+  <form id="libraryForm">
+
+    <label>Library Card Number: </label><br>
+    <input type="text" id="cardNumberInput" />
+    <br><br>
+
+    <label>Full Name: </label><br>
+    <input type="text" id="fullNameInput" />
+    <br><br>
+
+    <label>Phone Number: </label><br>
+    <input type="number" id="phoneNumberInput" />
+    <br><br>
+
+    <label>Email: </label><br>
+    <input type="email" id="emailInput" />
+    <br><br>
+
+    <label>Gender:</label><br>
+    <input type="radio" value="Male" name="gender" /> Male
+    <input type="radio" value="Female" name="gender" /> Female
+    <input type="radio" value="Others" name="gender" /> Others
+    <br><br>
+
+    <label>Address: </label><br>
+    <textarea id="addressTextarea" rows="5" cols="40"></textarea>
+    <br><br>
+
+    <label>Membership Type</label><br>
+    <select id="selectMembership">
+      <option value="Student">Student</option>
+      <option value="Faculty">Faculty</option>
+      <option value="General Public">General Public</option>
+    </select>
+    <br><br>
+
+    <label>Genre Interests:</label><br>
+    <input type="checkbox" value="Fiction" name="interests" /> Fiction<br>
+    <input type="checkbox" value="Non-Fiction" name="interests" /> Non-Fiction<br>
+    <input type="checkbox" value="Self-Help" name="interests" /> Self-Help<br>
+    <input type="checkbox" value="Biography" name="interests" /> Biography<br>
+    <input type="checkbox" value="Mystery" name="interests" /> Mystery<br>
+    <input type="checkbox" value="Poetry" name="interests" /> Poetry<br>
+    <input type="checkbox" value="Others" name="interests" /> Others<br>
+    <br><br>
+
+
+    <button type="submit">Submit</button>
+
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    const libraryForm = document.querySelector("#libraryForm")
+
+
+    libraryForm.addEventListener("submit", function (event) {
+      event.preventDefault()
+      const cardNumberInput = document.querySelector("#cardNumberInput")
+      const fullNameInput = document.querySelector("#fullNameInput")
+      const phoneNumberInput = document.querySelector("#phoneNumberInput")
+      const emailInput = document.querySelector("#emailInput")
+      const addressTextarea = document.querySelector("#addressTextarea")
+      const selectMembership = document.querySelector("#selectMembership")
+      const output = document.querySelector("#output")
+      const gender = document.querySelector("input[name='gender']:checked")
+      const interests = document.querySelectorAll("input[name='interests']:checked")
+      let selectedIntrests = []
+
+
+
+      for (let i = 0; i < interests.length; i++) {
+        selectedIntrests.push(interests[i].value)
+      }
+      output.innerHTML = `
+      
+      <h1>User Details</h1>
+      <p><strong>Library card Number:</strong>${cardNumberInput.value}</p>
+      <p><strong>Full Name:</strong>${fullNameInput.value}</p>
+      <p><strong>Phone Number:</strong>${phoneNumberInput.value}</p>
+      <p><strong>Email ID:</strong>${emailInput.value}</p>
+      <p><strong>Gender:</strong>${gender.value}</p>
+      <p><strong>Address:</strong>${addressTextarea.value}</p>
+      <p><strong>MemberShip Type:</strong>${selectMembership.value}</p>
+      <p><strong>Interests:</strong>${selectedIntrests.join(", ")}</p>
+      `
+
+    })
+
+
+
+
+  </script>
+</body>
+
+</html>
